@@ -6,64 +6,74 @@
       </div>
       <div class="header_top_item seller_info">
         <div class="title_box">
-          <img>
-          <span>粥品香坊（回龙观）</span>
+          <span>品牌</span>
+          <span>{{seller.data.name}}</span>
         </div>
         <div class="desc_box">
-          <span class="desc">蜂鸟专送</span>
-          <span>/</span>
-          <span class="delivery_time">38</span>
-          <span>分钟送达</span>
+          <span class="desc">蜂鸟专送/38分钟送达</span>
         </div>
         <div class="supports">
-          <div class="support_item supports_left">
-            <img>
+          <div class="supports_left">
+            <span>减</span>
             <span>在线支付满28减5</span>
           </div>
-          <div class="support_item supports_right">
-            <a>5</a>
-            <span>个</span>
+          <div class="supports_right">
+            <a>5个 ></a>
           </div>
         </div>
       </div>
     </div>
     <div class="header_bottom">
-      <a>粥品香坊其烹饪粥料的秘方源于中国千年古法，在融和现代制作工艺，由世界烹饪大师屈浩先生领衔研发。坚守纯天然、0添加的良心品质深得消费者青睐，发展至今成为粥类的引领品牌。是2008年奥运会和2013年园博会指定餐饮服务商。</a>
+      <span>公告</span>
+      <span class="bulletin">{{seller.data.bulletin}}</span>
+      <span>></span>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+  export default {
+    props: {
+      seller: {
+        type: Object
+      }
+    }
+  }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   .header
     .header_top
-      padding: 20px 20px
-      &:after
-        clear: both
-        content: ''
-        display: block
+      height: 64px
+      margin: 20px 0
+      display: flex
       .seller_img
-        width: 20%
-        float: left
+        margin: 0 10px
         & > img
-          width: 100%
+          width: 64px
+          vertical-align: top
       .seller_info
-        float: right
-        width: 77%
-        line-height: 25px;
-        .supports_left
-          float: left
-        .supports_right
-          float: right
+        flex-grow: 1
+        margin: 0 10px 0 0;
+        .title_box
+          font-size: 18px;
+          margin-bottom: 8px;
+        .desc_box
+          font-size: 14px
+          margin-bottom: 8px;
+        .supports
+          font-size: 14px
+          display: flex
+          .supports_left
+            flex: 1
     .header_bottom
-      overflow: hidden
-      text-overflow: ellipsis
-      white-space: nowrap
-      width: 94%
-      margin: 0 auto
+      margin: 0px 15px;
       font-size: 14px;
+      display: flex
+      .bulletin
+        flex: 1
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
 </style>
