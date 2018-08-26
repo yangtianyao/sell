@@ -31,7 +31,7 @@
     },
     created: function () {
       this.$http.get('/api/seller').then(res => {
-        this.seller = res.body
+        this.seller = res.body.data
       })
     }
   }

@@ -1,31 +1,34 @@
 <template>
   <div class="header">
+    <div class="background">
+      <img :src="seller.avatar"/>
+    </div>
     <div class="header_top">
       <div class="header_top_item seller_img">
-        <img src="http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg">
+        <img :src="seller.avatar">
       </div>
       <div class="header_top_item seller_info">
         <div class="title_box">
           <span>品牌</span>
-          <span>{{seller.data.name}}</span>
+          <span>{{seller.name}}</span>
         </div>
         <div class="desc_box">
-          <span class="desc">蜂鸟专送/38分钟送达</span>
+          <span class="desc">{{seller.description}}/{{seller.deliveryTime}}分钟送达</span>
         </div>
-        <div class="supports">
+        <div v-if="seller.supports" class="supports">
           <div class="supports_left">
             <span>减</span>
-            <span>在线支付满28减5</span>
+            <span>{{seller.supports[0].description}}</span>
           </div>
           <div class="supports_right">
-            <a>5个 ></a>
+            <span>{{seller.supports.length}}个 ></span>
           </div>
         </div>
       </div>
     </div>
     <div class="header_bottom">
       <span>公告</span>
-      <span class="bulletin">{{seller.data.bulletin}}</span>
+      <span class="bulletin">{{seller.bulletin}}</span>
       <span>></span>
     </div>
   </div>
@@ -33,22 +36,32 @@
 
 <script type="text/ecmascript-6">
   export default {
-    props: {
-      seller: {
-        type: Object
-      }
-    }
+    props: ['seller']
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   .header
+    background: rgba(7, 17, 27, 0.5);
+    color: #fff;
+    font-size: 13px;
+    position: relative;
+    .background
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+      filter: blur(10px);
+      img
+        width: 100%;
+        height: 100%;
     .header_top
+      padding: 25px 0 0 0
       height: 64px
-      margin: 20px 0
+      margin: 0 0 20px 0
       display: flex
       .seller_img
-        margin: 0 10px
+        margin: 0 10px 0 25px
         & > img
           width: 64px
           vertical-align: top
@@ -56,20 +69,23 @@
         flex-grow: 1
         margin: 0 10px 0 0;
         .title_box
-          font-size: 18px;
+          font-size: 16px;
           margin-bottom: 8px;
         .desc_box
-          font-size: 14px
           margin-bottom: 8px;
         .supports
-          font-size: 14px
           display: flex
           .supports_left
             flex: 1
+          .supports_right
+            padding: 6px 8px;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.2);
     .header_bottom
-      margin: 0px 15px;
-      font-size: 14px;
-      display: flex
+      font-size: 13px;
+      display: flex;
+      padding: 8px 12px 8px 9px;
+      background: rgba(7, 17, 27, 0.2);
       .bulletin
         flex: 1
         overflow: hidden;
